@@ -29,7 +29,7 @@ test_loader  = DataLoader(test_dataset,  batch_size=BATCH_SIZE, shuffle=False)
 
 print(f"Classes: {train_dataset.classes}")
 
-model=ViT(num_classes=NUM_CLASSES.to(DEVICE))
+model=ViT(num_classes=NUM_CLASSES).to(DEVICE)
 
 if torch.cuda.device_count() > 1:
     print(f"Using {torch.cuda.device_count()} GPUs")
