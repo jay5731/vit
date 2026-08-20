@@ -71,7 +71,7 @@ class ViT(nn.Module):
         self.cls_token=nn.Parameter(torch.randn(1,1,embedding_dim))
         self.pos_embedding=nn.Parameter(torch.randn(1,num_patches+1,embedding_dim))
         self.transformer=nn.Sequential(
-            *[TransformerEncoderBlock(embedding_dim,num_heads,mlp_dropout,attn_dropout)
+            *[TransformerEncoderBlock(embedding_dim, num_heads, embedding_dim * 4, mlp_dropout)
               for i in range(num_layers)]
         )
         self.mlp_head=nn.Sequential(
