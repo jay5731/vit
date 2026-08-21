@@ -14,7 +14,8 @@ NUM_CLASSES = 3
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {DEVICE}")
 
-train_dir,test_dir=download_data()
+train_dir = "data/pizza_steak_sushi/train"
+test_dir  = "data/pizza_steak_sushi/test"
 
 processor=AutoImageProcessor.from_pretrained("google/vit-base-patch16-224")
 
@@ -38,7 +39,7 @@ model=create_vit(num_classes=NUM_CLASSES,device=DEVICE)
 if torch.cuda.device_count() > 1:
     print(f"Using {torch.cuda.device_count()} GPUs")
     model = torch.nn.DataParallel(model)
-    
+
 loss_fn=nn.CrossEntropyLoss()
 optimizer = torch.optim.AdamW(model.parameters(), lr=LR)
 
